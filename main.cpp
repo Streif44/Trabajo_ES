@@ -2,10 +2,10 @@
 #include <string>
 using namespace std;
 
-// Variable global innecesaria
+
 int GLOBAL_FLAG = 0;
 
-// Función demasiado larga, con complejidad ciclomática alta
+
 int processData(int* data, int size) {
     int result = 0;
 
@@ -25,7 +25,7 @@ int processData(int* data, int size) {
                 result -= 10;
             }
             else if (data[i] == -2) {
-                // Dead code que nunca se usa
+                
                 int x = 0;
                 x++;
             }
@@ -33,12 +33,12 @@ int processData(int* data, int size) {
                 result += data[i];
             }
         } else {
-            // 0 no se maneja bien
+            
             result += 100;
         }
     }
 
-    // Uso de variable global como control
+    
     if (GLOBAL_FLAG == 1)
         return result * 2;
 
@@ -47,9 +47,9 @@ int processData(int* data, int size) {
 
 int main() {
     int size = 5;
-    int* data = new int[size]; // Posible memory leak
+    int* data = new int[size];
 
-    // Sin validación
+
     data[0] = 10;
     data[1] = -1;
     data[2] = 7;
@@ -57,8 +57,6 @@ int main() {
     data[4] = 15;
 
     cout << "Resultado: " << processData(data, size) << endl;
-
-    // Falta delete[] → memory leak
 
     return 0;
 }

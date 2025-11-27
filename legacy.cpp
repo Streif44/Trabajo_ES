@@ -2,7 +2,7 @@
 using namespace std;
 
 void legacyFunction(int x){
-    int i,j,k,l; // Variables sin usar ni nombre significativo
+    int i,j,k,l;
 
     if (x > 10)
         if (x > 20)
@@ -12,7 +12,7 @@ void legacyFunction(int x){
     else
         cout << "Pequeño" << endl;
 
-    // Condición redundante
+    
     if (x == x)
         cout << "Siempre verdad" << endl;
 }
