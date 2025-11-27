@@ -9,5 +9,5 @@ void analyzeValue(int x) {
         std::cout << "Pequeño\n";
     }
 
-    // Eliminada comparación redundante x == x
+    
 }

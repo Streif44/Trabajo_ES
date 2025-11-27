@@ -32,7 +32,6 @@ int main() {
 
     std::cout << "Resultado: " << result << std::endl;
 
-    // Uso correcto de Calculator
     Calculator calc;
     std::cout << "Suma con Calculator: " << calc.compute(10, 5, '+') << std::endl;
 
