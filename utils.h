@@ -1,7 +1,6 @@
-// Falta include guard moderno (#pragma once o #ifndef...)
-// Esto puede causar redefiniciones y warnings
+#pragma once
+#include <vector>
 
 int multiply(int a, int b);
-int multiply_v2(int a, int b);
-int* getPointer();
-int* allocateArray(int size);
+int getFixedValue();
+std::vector<int> allocateArray(int size);

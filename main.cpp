@@ -1,64 +1,40 @@
 #include <iostream>
-#include <string>
-using namespace std;
+#include <vector>
+#include "utils.h"
+#include "calculator.h"
 
-// Variable global innecesaria
-int GLOBAL_FLAG = 0;
-
-// Función demasiado larga, con complejidad ciclomática alta
-int processData(int* data, int size) {
+int processData(const std::vector<int>& data, bool doubleResult = false) {
     int result = 0;
 
-    for (int i = 0; i < size; i++) {
-        if (data[i] > 0) {
-            if (data[i] % 2 == 0) {
-                result += data[i] / 2;
-            } else if (data[i] % 3 == 0) {
-                result += data[i] * 3;
-            } else if (data[i] % 5 == 0) {
-                result += data[i] - 5;
-            } else {
-                result += data[i];
-            }
-        } else if (data[i] < 0) {
-            if (data[i] == -1) {
-                result -= 10;
-            }
-            else if (data[i] == -2) {
-                // Dead code que nunca se usa
-                int x = 0;
-                x++;
-            }
-            else {
-                result += data[i];
-            }
-        } else {
-            // 0 no se maneja bien
+    for (int value : data) {
+        if (value > 0) {
+            if (value % 2 == 0) result += value / 2;
+            else if (value % 3 == 0) result += value * 3;
+            else if (value % 5 == 0) result += value - 5;
+            else result += value;
+        } 
+        else if (value < 0) {
+            if (value == -1) result -= 10;
+            else result += value;
+        } 
+        else { // value == 0
             result += 100;
         }
     }
 
-    // Uso de variable global como control
-    if (GLOBAL_FLAG == 1)
-        return result * 2;
-
-    return result;
+    return doubleResult ? result * 2 : result;
 }
 
 int main() {
-    int size = 5;
-    int* data = new int[size]; // Posible memory leak
+    std::vector<int> data = {10, -1, 7, 0, 15};
 
-    // Sin validación
-    data[0] = 10;
-    data[1] = -1;
-    data[2] = 7;
-    data[3] = 0;
-    data[4] = 15;
+    int result = processData(data);
 
-    cout << "Resultado: " << processData(data, size) << endl;
+    std::cout << "Resultado: " << result << std::endl;
 
-    // Falta delete[] → memory leak
+    // Uso correcto de Calculator
+    Calculator calc;
+    std::cout << "Suma con Calculator: " << calc.compute(10, 5, '+') << std::endl;
 
     return 0;
 }
